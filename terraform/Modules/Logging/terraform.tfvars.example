@@ -1,0 +1,110 @@
+# terraform/terraform.tfvars.example
+# Copy this to terraform.tfvars and customize for your environment
+
+# ============================================================================
+# GENERAL CONFIGURATION
+# ============================================================================
+project_name = "enterprise-federated-iam"
+environment  = "dev"
+aws_region   = "us-east-1"
+
+common_tags = {
+  Project     = "enterprise-federated-iam"
+  ManagedBy   = "terraform"
+  Environment = "dev"
+  Owner       = "CloudSecurityTeam"
+  CostCenter  = "IT-Security"
+}
+
+# ============================================================================
+# ACCOUNT CONFIGURATION
+# ============================================================================
+# IMPORTANT: Replace with your actual AWS account IDs
+identity_account_id = "123456789012"  # Account where Identity Center is deployed
+logging_account_id  = "123456789012"  # Same as identity account for simplicity
+
+workload_accounts = {
+  dev = {
+    account_id  = "123456789013"
+    description = "Development workload account"
+    ou_path     = "Development"
+  }
+  staging = {
+    account_id  = "123456789014"
+    description = "Staging workload account"
+    ou_path     = "Non-Production"
+  }
+  prod = {
+    account_id  = "123456789015"
+    description = "Production workload account"
+    ou_path     = "Production"
+  }
+}
+
+# ============================================================================
+# IDENTITY CENTER CONFIGURATION
+# ============================================================================
+# NOTE: These values must be filled in AFTER manual Identity Center setup
+identity_center_instance_arn = ""  # Will be filled after manual setup
+saml_provider_name          = "CompanyIdP"
+saml_metadata_url           = ""  # Will be provided by your SAML IdP
+
+# ============================================================================
+# SECURITY CONFIGURATION
+# ============================================================================
+require_mfa           = true
+session_timeout_hours = 8
+
+# Restrict access to specific IP ranges (optional)
+# allowed_ip_ranges = [
+#   "203.0.113.0/24",    # Company office network
+#   "198.51.100.0/24"    # Company VPN range
+# ]
+allowed_ip_ranges = []  # Allow from any IP for demo
+
+# ============================================================================
+# SAML ATTRIBUTE MAPPING
+# ============================================================================
+saml_attribute_map = {
+  "https://aws.amazon.com/SAML/Attributes/RoleSessionName" = "sub"
+  "https://aws.amazon.com/SAML/Attributes/SessionDuration" = "SessionDuration"
+  "Department"                                             = "Department"
+  "CostCenter"                                            = "CostCenter"
+  "Project"                                               = "Project"
+}
+
+# ============================================================================
+# LOGGING AND MONITORING
+# ============================================================================
+enable_cloudtrail         = true
+cloudtrail_retention_days  = 90
+enable_cloudtrail_insights = false  # Set to true for production
+log_group_retention_days   = 14
+
+# ============================================================================
+# COMPLIANCE FEATURES
+# ============================================================================
+enable_config         = true
+enable_guardduty      = false  # Can be expensive, enable for production
+enable_access_analyzer = true
+
+# Email for security notifications (optional)
+# notification_email = "security-team@company.com"
+
+# ============================================================================
+# PERMISSION SETS CUSTOMIZATION
+# ============================================================================
+# Using defaults from variables.tf, but you can override here:
+# permission_sets = {
+#   "CustomDeveloperAccess" = {
+#     description           = "Custom developer permissions"
+#     session_duration     = "PT6H"
+#     managed_policies     = ["arn:aws:iam::aws:policy/PowerUserAccess"]
+#     inline_policy        = ""
+#     customer_managed_policies = []
+#     tags = {
+#       AccessLevel = "Developer"
+#       Department  = "Engineering"
+#     }
+#   }
+# }

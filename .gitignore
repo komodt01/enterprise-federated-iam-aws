@@ -1,0 +1,282 @@
+# Enterprise Federated IAM - .gitignore
+
+# ==============================================
+# Terraform Files
+# ==============================================
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+*tfplan*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# ==============================================
+# AWS & Cloud Provider Files
+# ==============================================
+
+# AWS credentials and config
+.aws/
+aws-credentials
+aws-config
+credentials
+config
+
+# Service account keys and certificates
+*.pem
+*.p12
+*.pfx
+*.key
+*.crt
+*.cer
+
+# Cloud provider authentication files
+gcp-credentials.json
+azure-credentials.json
+service-account.json
+
+# ==============================================
+# SAML & Identity Provider Files
+# ==============================================
+
+# SAML metadata files (may contain sensitive info)
+*-metadata.xml
+saml-metadata.xml
+idp-metadata.xml
+sp-metadata.xml
+
+# Identity provider configuration
+okta-config.json
+azure-ad-config.json
+auth0-config.json
+
+# Certificate files used for SAML
+*.crt
+*.cert
+*.certificate
+
+# ==============================================
+# Security & Sensitive Data
+# ==============================================
+
+# API keys and secrets
+secrets.txt
+secrets.json
+api-keys.txt
+.env
+.env.local
+.env.*.local
+
+# Backup files that might contain sensitive data
+*.backup
+*.bak
+*.old
+*.orig
+
+# Archive files that might contain credentials
+*.tar.gz
+*.zip
+*.7z
+backup/
+
+# ==============================================
+# IDE and Editor Files
+# ==============================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ==============================================
+# Operating System Files
+# ==============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ==============================================
+# Logs and Temporary Files
+# ==============================================
+
+# Log files
+*.log
+logs/
+log/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ==============================================
+# Documentation and Build Artifacts
+# ==============================================
+
+# Generated documentation
+docs/build/
+site/
+
+# Build outputs
+dist/
+build/
+out/
+
+# ==============================================
+# Project Specific Files
+# ==============================================
+
+# Local environment configuration
+local.tfvars
+dev.tfvars
+staging.tfvars
+prod.tfvars
+
+# Local testing files
+test-*.tf
+sandbox/
+playground/
+
+# Personal notes and drafts
+notes.md
+draft-*.md
+personal-notes/
+
+# Local scripts with credentials
+deploy-local.sh
+cleanup-local.sh
+
+# Backup of working configurations
+working-config/
+backup-*.tf
+
+# ==============================================
+# Package Managers and Dependencies
+# ==============================================
+
+# Node.js (if using any JS tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using any Python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+
+# Go (if using any Go tools)
+vendor/
+
+# ==============================================
+# Security Scanning and Analysis Tools
+# ==============================================
+
+# Terraform security scanning results
+.tfsec/
+tfsec-results.json
+checkov-results.json
+terrascan-results.json
+
+# Other security tool outputs
+security-scan-results/
+vulnerability-reports/
+
+# ==============================================
+# CI/CD and Automation
+# ==============================================
+
+# GitHub Actions local testing
+.github/workflows/local/
+
+# Local automation scripts with secrets
+automation/local/
+scripts/local/
+
+# ==============================================
+# Exceptions (Files to Include)
+# ==============================================
+
+# Include example/template files
+!terraform.tfvars.example
+!example.tfvars
+!template.tfvars
+
+# Include documentation
+!README.md
+!*.md
+
+# Include public configuration examples
+!examples/
+!docs/
